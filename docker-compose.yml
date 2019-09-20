@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  commune-api-dev:
+    build:
+      context: .
+    image: node:12.7.0
+    environment:
+      NODE_ENV: DEV
+    volumes:
+      - "./:/commune-api/"
+    ports:
+      - "3000:3000"
+    links:
+      - "commune-db-dev"
+
+  commune-db-dev:
+    image: postgres:11.5
+    environment:
+      - POSTGRES_PASSWORD=commune
+      - POSTGRES_USER=commune
+      - POSTGRES_DB=commune-dev
+    ports:
+      - "5432:5432"
