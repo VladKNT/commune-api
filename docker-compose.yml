@@ -7,6 +7,12 @@ services:
     image: node:12.7.0
     environment:
       NODE_ENV: DEV
+      DB_TYPE: postgres
+      DB_HOST: commune-db-dev
+      DB_PORT: 5432
+      DB_PASSWORD: commune
+      DB_USER: commune
+      DB_NAME: commune-dev
     volumes:
       - "./:/commune-api/"
     ports:
