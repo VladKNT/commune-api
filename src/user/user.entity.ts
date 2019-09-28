@@ -1,6 +1,18 @@
-import { Entity, Column, OneToOne, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  OneToOne,
+  OneToMany,
+  ManyToOne,
+  ManyToMany,
+  JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { UserDetails } from '../user-details/user-details.entity';
 import { Role } from '../role/role.entity';
+import { Chat } from '../chat/chat.entity';
 
 @Entity()
 export class User {
@@ -28,4 +40,10 @@ export class User {
 
   @ManyToOne(type => Role, role => role.users, { cascade: true, onDelete: 'SET NULL' })
   role: Role;
+
+  @OneToMany(type => Chat, chat => chat.creator)
+  ownChats: Chat[];
+
+  @ManyToMany(type => Chat, chat => chat.members)
+  chats: Chat[];
 }
