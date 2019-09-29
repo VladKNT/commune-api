@@ -6,7 +6,7 @@
 started_at=$(date +"%s")
 
 echo "-----> Provisioning containers <-----"
-docker-compose up -d
+docker-compose up
 echo ""
 
 web=$(docker-compose ps | grep commune-api-dev | awk '{print $1}')
