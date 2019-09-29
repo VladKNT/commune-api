@@ -14,6 +14,7 @@ import { UserDetails } from '../user-details/user-details.entity';
 import { Role } from '../role/role.entity';
 import { Chat } from '../chat/chat.entity';
 import { Message } from '../message/message.entity';
+import { Event } from '../event/event.entity';
 
 @Entity()
 export class User {
@@ -50,4 +51,7 @@ export class User {
 
   @ManyToOne(type => Message, message => message.creator)
   messages: Message[];
+
+  @ManyToOne(type => Event, event => event.creator)
+  ownEvents: Event[];
 }
