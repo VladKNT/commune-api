@@ -6,6 +6,8 @@ import { UserModule } from './user/user.module';
 import { UserDetailsController } from './user-details/user-details.controller';
 import { UserDetailsModule } from './user-details/user-details.module';
 import { RoleModule } from './role/role.module';
+import { ChatModule } from './chat/chat.module';
+import { MessageModule } from './message/message.module';
 import * as ormconfig from './database/config/ormconfig';
 
 @Module({
@@ -14,6 +16,8 @@ import * as ormconfig from './database/config/ormconfig';
     UserModule,
     UserDetailsModule,
     RoleModule,
+    ChatModule,
+    MessageModule,
   ],
   controllers: [AppController, UserDetailsController],
   providers: [AppService],

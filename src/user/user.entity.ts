@@ -13,6 +13,7 @@ import {
 import { UserDetails } from '../user-details/user-details.entity';
 import { Role } from '../role/role.entity';
 import { Chat } from '../chat/chat.entity';
+import { Message } from '../message/message.entity';
 
 @Entity()
 export class User {
@@ -34,7 +35,7 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(type => UserDetails, userDetails => userDetails.user, { cascade: true, onDelete: 'CASCADE' })
+  @OneToOne(type => UserDetails, userDetails => userDetails.user, { cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn()
   details: UserDetails;
 
@@ -46,4 +47,7 @@ export class User {
 
   @ManyToMany(type => Chat, chat => chat.members)
   chats: Chat[];
+
+  @ManyToOne(type => Message, message => message.creator)
+  messages: Message[];
 }

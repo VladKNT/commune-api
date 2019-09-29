@@ -1,5 +1,6 @@
-import { Entity, Column, ManyToOne, ManyToMany, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, ManyToMany, JoinColumn, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { User } from '../user/user.entity';
+import { Message } from '../message/message.entity';
 
 @Entity()
 export class Chat {
@@ -17,6 +18,9 @@ export class Chat {
   creator: User;
 
   @ManyToMany(type => User, user => user.chats, { cascade: true})
-  @JoinColumn({ name: 'creatorId' })
+  @JoinColumn()
   members: User[];
+
+  @OneToMany(type => Message, message => message.chat, { cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  messages: Message[];
 }
