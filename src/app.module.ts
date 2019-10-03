@@ -9,6 +9,7 @@ import { RoleModule } from './role/role.module';
 import { ChatModule } from './chat/chat.module';
 import { MessageModule } from './message/message.module';
 import { EventModule } from './event/event.module';
+import { EventStatusModule } from './event-status/event-status.module';
 import * as ormconfig from './database/config/ormconfig';
 
 @Module({
@@ -20,6 +21,7 @@ import * as ormconfig from './database/config/ormconfig';
     ChatModule,
     MessageModule,
     EventModule,
+    EventStatusModule,
   ],
   controllers: [AppController, UserDetailsController],
   providers: [AppService],

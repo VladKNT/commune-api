@@ -1,7 +1,9 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class ChatTable1569672251369 implements MigrationInterface {
+
   public async up(queryRunner: QueryRunner): Promise<any> {
+
     await queryRunner.query(`
       CREATE TABLE "chat" (
         "id" SERIAL NOT NULL,
@@ -23,4 +25,5 @@ export class ChatTable1569672251369 implements MigrationInterface {
     await queryRunner.query(`ALTER TABLE "chat" DROP CONSTRAINT "FK_77b3c245a0b1252384b64e53f57"`, undefined);
     await queryRunner.query(`DROP TABLE "chat"`, undefined);
   }
+
 }
