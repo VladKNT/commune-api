@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
 ###############################################################################
-## Quickstart Script
+## Create Migration Script
 ###############################################################################
 started_at=$(date +"%s")
 
-echo "-----> Provisioning containers <-----"
-docker-compose up -d
-echo ""
-
 web=$(docker-compose ps | grep commune-api-dev | awk '{print $1}')
 
-# Run TypeORM migrations.
-echo "-----> Running application migrations <-----"
-docker exec -it "$web" yarn run typeorm:run
+# Create TypORM migration.
+echo "-----> Creating migration "${1}" <-----"
+docker exec -it "$web" yarn run typeorm:create "${1}"
 echo ""
 
 ended_at=$(date +"%s")
