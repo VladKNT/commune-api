@@ -7,6 +7,7 @@ WORKDIR /commune-api
 
 COPY . .
 
+RUN npm i -g @nestjs/cli
 RUN yarn
 
 EXPOSE 3000

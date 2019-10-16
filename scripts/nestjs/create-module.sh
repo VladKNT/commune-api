@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
 ###############################################################################
-## Quickstart Script
+## Create Module Script
 ###############################################################################
 started_at=$(date +"%s")
 
-echo "-----> Provisioning containers <-----"
-docker-compose up -d
-echo ""
-
 web=$(docker-compose ps | grep commune-api-dev | awk '{print $1}')
 
-# Run TypeORM migrations.
-echo "-----> Running application migrations <-----"
-docker exec -it "$web" yarn run typeorm:run
+# Create nest.js module.
+echo "-----> Creating module "${1}" <-----"
+docker exec -it "$web" nest g module "${1}"
 echo ""
 
 ended_at=$(date +"%s")

@@ -4,7 +4,6 @@ services:
   commune-api-dev:
     build:
       context: .
-    image: node:12.7.0
     environment:
       NODE_ENV: DEV
       DB_TYPE: postgres
