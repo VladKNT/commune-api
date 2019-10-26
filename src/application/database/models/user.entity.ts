@@ -15,6 +15,7 @@ import { Role } from './role.entity';
 import { Chat } from './chat.entity';
 import { Message } from './message.entity';
 import { Event } from './event.entity';
+import {Comment} from './comment.entity';
 
 @Entity()
 export class User {
@@ -49,9 +50,12 @@ export class User {
   @ManyToMany(type => Chat, chat => chat.members)
   chats: Chat[];
 
-  @ManyToOne(type => Message, message => message.creator)
+  @OneToMany(type => Message, message => message.creator)
   messages: Message[];
 
-  @ManyToOne(type => Event, event => event.creator)
+  @OneToMany(type => Event, event => event.creator)
   ownEvents: Event[];
+
+  @OneToMany(type => Comment, comment => comment.event)
+  comments: Comment[];
 }
