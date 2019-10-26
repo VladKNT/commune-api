@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToOne, OneToMany } from 'typeorm';
 import { User } from './user.entity';
 import { EventStatus } from './event-status.entity';
-import {EventPhoto} from './event-photo.entity';
+import { EventPhoto } from './event-photo.entity';
+import { Comment } from './comment.entity';
 
 @Entity()
 export class Event {
@@ -37,6 +38,9 @@ export class Event {
   @JoinColumn()
   previewPhoto: EventPhoto;
 
-  @ManyToOne(type => EventPhoto, eventPhoto => eventPhoto.eventAlbum, { cascade: true, onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+  @OneToMany(type => EventPhoto, eventPhoto => eventPhoto.eventAlbum)
   photos: EventPhoto[];
+
+  @OneToMany(type => Comment, comment => comment.event)
+  comments: Comment[];
 }
